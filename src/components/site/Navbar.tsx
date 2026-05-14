@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logoImg from "@/assets/logo.png";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -33,18 +34,12 @@ export function Navbar() {
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between">
-        <Link to="/" className="group flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-full bg-forest text-beige transition-transform group-hover:rotate-12">
-            <span className="font-display text-lg leading-none">P</span>
-          </div>
-          <div className="leading-tight">
-            <div className={`font-display text-lg ${scrolled ? "text-foreground" : "text-beige"}`}>
-              Pealy
-            </div>
-            <div className={`text-[10px] uppercase tracking-[0.22em] ${scrolled ? "text-muted-foreground" : "text-beige/70"}`}>
-              Eco · Resort · Culture
-            </div>
-          </div>
+        <Link to="/" className="group flex items-center gap-2">
+          <img
+            src={logoImg}
+            alt="Pealy Eco Resort"
+            className="h-20 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
