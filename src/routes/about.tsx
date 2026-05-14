@@ -3,10 +3,9 @@ import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import villageImg from "@/assets/village-life.jpg";
 import cottageImg from "@/assets/cottage-river.jpg";
 import cultureImg from "@/assets/culture-baul.jpg";
-import founderImg from "@/assets/about-founder.jpg";
 import boatImg from "@/assets/boat-tour.jpg";
 import potteryImg from "@/assets/culture-pottery.jpg";
-import { Leaf, Users, Award, Heart, ArrowRight } from "lucide-react";
+import { Leaf, Users, Music2, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -16,7 +15,7 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About Pealy Eco Resort" },
       { property: "og:description", content: "A sanctuary at the edge of the world's largest mangrove forest." },
       { property: "og:url", content: "/about" },
-      { property: "og:image", content: founderImg },
+      { property: "og:image", content: villageImg },
     ],
     links: [{ rel: "canonical", href: "/about" }],
   }),
@@ -98,7 +97,7 @@ function AboutPage() {
             {[
               { Icon: Leaf, n: "01", t: "Honour the Land", d: "Solar power, rainwater harvesting, zero single-use plastic. Tourism that gives back to mangrove conservation." },
               { Icon: Users, n: "02", t: "Honour the People", d: "Every staff member is from a Sundarbans village. Fair wages, profit-sharing, and real ownership in what we build." },
-              { Icon: Heart, n: "03", t: "Honour the Story", d: "We preserve and share Bengali folk heritage — Baul, Bhatiyali, jatra, nakshi kantha — through nightly programs." },
+              { Icon: Music2, n: "03", t: "Honour the Story", d: "We preserve and share Bengali folk heritage — Baul, Bhatiyali, jatra, nakshi kantha — through nightly programs." },
             ].map((v) => (
               <div key={v.n} className="rounded-md border border-border bg-card p-8 hover-lift">
                 <v.Icon className="text-gold" size={28} />
@@ -133,40 +132,6 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Founder */}
-      <section className="bg-secondary py-32">
-        <div className="container-x grid items-center gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <img src={founderImg} alt="Founder of Pealy Eco Resort" loading="lazy" className="h-[620px] w-full rounded-md object-cover" />
-          </div>
-          <div className="lg:col-span-7">
-            <div className="text-[11px] uppercase tracking-[0.32em] text-mangrove">A note from the founder</div>
-            <blockquote className="mt-6 font-display text-3xl leading-snug text-balance md:text-4xl">
-              "I grew up listening to my grandmother's stories of tigers in the
-              moonlight and Baul singers at festival nights. Pealy is my way of
-              keeping those stories alive — for my children, and for yours."
-            </blockquote>
-            <div className="mt-8 flex items-center gap-4">
-              <div>
-                <div className="font-display text-lg text-forest">Mahbub Rahman</div>
-                <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Founder & Custodian</div>
-              </div>
-            </div>
-            <div className="mt-10 grid grid-cols-2 gap-6 border-t border-border pt-8">
-              <div>
-                <Award className="text-gold" />
-                <div className="mt-3 font-display text-lg text-forest">Recognised</div>
-                <p className="mt-1 text-sm text-muted-foreground">National Geographic Traveller, BBC Travel, Conde Nast Traveller India</p>
-              </div>
-              <div>
-                <Heart className="text-gold" />
-                <div className="mt-3 font-display text-lg text-forest">Community-owned</div>
-                <p className="mt-1 text-sm text-muted-foreground">10% of profits fund the Pealy Cultural Fellowship for young Bengali artists</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">

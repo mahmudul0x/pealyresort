@@ -175,33 +175,61 @@ function Divider() { return <div className="h-8 w-px shrink-0 bg-beige/15" />; }
 /* ─── Welcome ───────────────────────────────────────────────────────────── */
 function Welcome() {
   return (
-    <section className="py-20 md:py-28 lg:py-32">
-      <div className="container-x grid gap-12 lg:grid-cols-2 lg:gap-20">
-        <div>
-          <div className="text-[11px] uppercase tracking-[0.32em] text-mangrove">Welcome to Pealy</div>
-          <h2 className="mt-4 font-display text-3xl leading-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
-            Where nature breathes & heritage sings.
+    <section className="overflow-hidden bg-background">
+      {/* Main grid — text left, image right */}
+      <div className="grid lg:grid-cols-2 lg:min-h-[600px]">
+
+        {/* Left: text panel */}
+        <div className="flex flex-col justify-center px-6 py-16 sm:px-10 md:py-20 lg:px-20 lg:py-28">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-gold" />
+            <span className="text-[10px] uppercase tracking-[0.4em] text-gold">Welcome to Pealy</span>
+          </div>
+          <h2 className="mt-6 font-display text-3xl leading-[1.1] text-balance text-foreground sm:text-4xl md:text-5xl lg:text-[52px]">
+            Where nature breathes &amp; heritage sings.
           </h2>
-          <p className="mt-6 max-w-lg text-[15px] leading-[1.85] text-muted-foreground">
+          <p className="mt-6 max-w-md text-[15px] leading-[1.9] text-muted-foreground">
             Tucked between the rivers and tigers of the world's largest mangrove
-            delta, Pealy Eco Resort & Culture Centre is a sanctuary for travellers
-            who seek more than a stay — a feeling, a story, a return to something
-            real. Wake to fishermen's calls, drift through silent green channels,
-            share Baul music by firelight.
+            delta, Pealy Eco Resort &amp; Culture Centre is a sanctuary for
+            travellers who seek more than a stay — a feeling, a story, a return
+            to something real. Wake to fishermen's calls, drift through silent
+            green channels, share Baul music by firelight.
           </p>
-          <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border pt-8">
+
+          {/* Stats row */}
+          <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-8">
             <Stat n="14" l="Eco Cottages" />
             <Stat n="07" l="Curated Tours" />
             <Stat n="100%" l="Locally Sourced" />
           </div>
-        </div>
-        <div className="relative">
-          <img src={cottageImg} alt="Wooden eco cottage by river" className="h-72 w-full rounded-xl object-cover sm:h-96 lg:h-[520px]" loading="lazy" />
-          <div className="glass absolute -bottom-6 left-4 right-4 rounded-xl p-4 sm:left-6 sm:right-6 sm:p-5 lg:-bottom-8 lg:left-auto lg:-right-8 lg:max-w-xs">
-            <div className="font-display text-xl text-forest sm:text-2xl">Stay. Learn. Belong.</div>
-            <p className="mt-2 text-xs text-muted-foreground">Our promise to every guest who walks through our gates.</p>
+
+          <div className="mt-8">
+            <Link
+              to="/about"
+              className="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 text-sm font-medium text-beige transition-transform hover:-translate-y-0.5"
+            >
+              Our story <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
+
+        {/* Right: full-height image */}
+        <div className="relative min-h-[320px] sm:min-h-[420px] lg:min-h-0">
+          <img
+            src={cottageImg}
+            alt="Wooden eco cottage by river"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          {/* Bottom caption card */}
+          <div className="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/15 bg-forest/75 p-5 backdrop-blur-md sm:left-8 sm:right-auto sm:max-w-[260px]">
+            <div className="font-display text-xl text-gold">Stay. Learn. Belong.</div>
+            <p className="mt-1.5 text-xs leading-relaxed text-beige/70">
+              Our promise to every guest who walks through our gates.
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -211,7 +239,7 @@ function Stat({ n, l }: { n: string; l: string }) {
   return (
     <div>
       <div className="font-display text-3xl text-forest md:text-4xl">{n}</div>
-      <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
+      <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{l}</div>
     </div>
   );
 }
@@ -569,22 +597,51 @@ function BookingCTA() {
 function LocationStrip() {
   return (
     <section className="container-x pb-20 md:pb-28 lg:pb-32">
-      <div className="grid gap-8 rounded-2xl border border-border bg-card p-8 sm:p-10 md:grid-cols-2 md:p-14">
-        <div>
-          <div className="text-[11px] uppercase tracking-[0.32em] text-mangrove">Find Us</div>
-          <h3 className="mt-4 font-display text-2xl sm:text-3xl">West Dhangmari, Banishanta</h3>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Dakop, Mongla, Bangladesh. Easily reachable by boat from Mongla port.
-            Pickup and drop arranged for all packages.
-          </p>
-        </div>
-        <div className="flex items-center gap-4 md:justify-end">
-          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-mangrove/10 text-mangrove">
-            <MapPin size={20} />
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+        <div className="grid lg:grid-cols-2">
+          {/* Info panel */}
+          <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-14">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-mangrove" />
+              <span className="text-[10px] uppercase tracking-[0.4em] text-mangrove">Find Us</span>
+            </div>
+            <h3 className="mt-5 font-display text-2xl text-foreground sm:text-3xl">
+              West Dhangmari, Banishanta
+            </h3>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Dakop, Mongla, Bangladesh. Easily reachable by boat from Mongla port.
+              Pickup and drop arranged for all packages.
+            </p>
+
+            <div className="mt-8 flex items-center gap-4 rounded-xl bg-secondary px-5 py-4 w-fit">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-mangrove/15 text-mangrove">
+                <MapPin size={18} />
+              </div>
+              <div>
+                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Coordinates</div>
+                <div className="mt-0.5 font-display text-base text-foreground">22.4793° N, 89.5836° E</div>
+              </div>
+            </div>
+
+            <a
+              href="https://www.google.com/maps?q=22.4793,89.5836"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-forest px-6 py-2.5 text-sm font-medium text-beige transition-transform hover:-translate-y-0.5"
+            >
+              Open in Google Maps <ArrowRight size={14} />
+            </a>
           </div>
-          <div>
-            <div className="text-xs uppercase tracking-widest text-muted-foreground">Coordinates</div>
-            <div className="font-display text-lg">22.4793° N, 89.5836° E</div>
+
+          {/* Map */}
+          <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-[420px]">
+            <iframe
+              title="Pealy Eco Resort location"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=89.5636%2C22.4643%2C89.6036%2C22.4943&layer=mapnik&marker=22.4793%2C89.5836"
+              className="absolute inset-0 h-full w-full border-0"
+              loading="lazy"
+              allowFullScreen
+            />
           </div>
         </div>
       </div>
