@@ -30,7 +30,9 @@ export function Navbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass shadow-[0_8px_30px_-15px_rgba(0,0,0,0.2)]" : "bg-transparent"
+        scrolled
+          ? "bg-forest/95 backdrop-blur-md shadow-[0_4px_24px_-8px_rgba(0,0,0,0.4)] border-b border-mangrove/40"
+          : "bg-transparent"
       }`}
     >
       <div className="container-x flex h-20 items-center justify-between">
@@ -47,10 +49,8 @@ export function Navbar() {
             <Link
               key={item.to}
               to={item.to}
-              className={`relative px-3 py-2 text-[13px] tracking-wide transition-colors ${
-                scrolled ? "text-foreground/80 hover:text-forest" : "text-beige/85 hover:text-beige"
-              }`}
-              activeProps={{ className: "text-gold" }}
+              className="relative px-3 py-2 text-[13px] tracking-wide text-beige/85 transition-colors hover:text-gold"
+              activeProps={{ className: "!text-gold" }}
               activeOptions={{ exact: true }}
             >
               {item.label}
@@ -61,7 +61,7 @@ export function Navbar() {
         <div className="hidden lg:block">
           <Link
             to="/booking"
-            className="inline-flex items-center justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-foreground shadow-lg shadow-gold/20 transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-forest shadow-lg shadow-gold/30 transition-all hover:-translate-y-0.5 hover:bg-gold/90"
           >
             Book Your Stay
           </Link>
@@ -70,22 +70,22 @@ export function Navbar() {
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden ${scrolled ? "text-foreground" : "text-beige"}`}
+          className="text-beige lg:hidden"
         >
           {open ? <X /> : <Menu />}
         </button>
       </div>
 
       {open && (
-        <div className="glass border-t border-border lg:hidden">
+        <div className="border-t border-mangrove/40 bg-forest/97 backdrop-blur-md lg:hidden">
           <div className="container-x flex flex-col gap-1 py-4">
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-3 py-2.5 text-sm text-foreground/85 hover:bg-secondary"
-                activeProps={{ className: "text-gold" }}
+                className="rounded-md px-3 py-2.5 text-sm text-beige/85 transition-colors hover:bg-mangrove/30 hover:text-gold"
+                activeProps={{ className: "!text-gold" }}
               >
                 {item.label}
               </Link>
@@ -93,7 +93,7 @@ export function Navbar() {
             <Link
               to="/booking"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-gold px-5 py-3 text-center text-sm font-medium text-foreground"
+              className="mt-2 rounded-full bg-gold px-5 py-3 text-center text-sm font-medium text-forest"
             >
               Book Your Stay
             </Link>
