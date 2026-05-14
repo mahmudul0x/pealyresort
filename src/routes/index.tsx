@@ -1,16 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import heroImg from "@/assets/hero-sundarbans.jpg";
+import heroImg from "@/assets/1.jpeg";
+import hero2Img from "@/assets/3.jpeg";
+import hero3Img from "@/assets/4.jpeg";
+import hero4Img from "@/assets/5.jpeg";
+import hero5Img from "@/assets/6.jpeg";
+import wildlifeImg from "@/assets/wildlife-tiger.jpg";
 import cottageImg from "@/assets/cottage-river.jpg";
 import cultureImg from "@/assets/culture-baul.jpg";
 import foodImg from "@/assets/food-bengali.jpg";
 import boatImg from "@/assets/boat-tour.jpg";
 import tentImg from "@/assets/tent-experience.jpg";
-import wildlifeImg from "@/assets/wildlife-tiger.jpg";
 import villageImg from "@/assets/village-life.jpg";
 import roomImg from "@/assets/room-interior.jpg";
 import { useEffect, useState } from "react";
-import { ArrowRight, Leaf, Waves, Compass, Tent, Utensils, Music2, MapPin, Star, ChevronDown } from "lucide-react";
+import { ArrowRight, Leaf, Waves, Compass, Tent, Utensils, Music2, MapPin, Star, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { VideoBackground } from "@/components/site/VideoBackground";
 
 // Cinematic ambient footage. Swap with self-hosted /public/videos/*.mp4
@@ -24,11 +28,12 @@ const HERO_VIDEO = [
 ];
 // Cinematic image rotation behind the hero — also acts as the video poster.
 const HERO_SLIDES = [
-  { img: heroImg, alt: "Aerial view of Sundarbans mangrove forest at sunrise" },
-  { img: boatImg, alt: "Boat journey through mangrove channels" },
+  { img: heroImg, alt: "Pealy Eco Resort cottage in the mangrove forest" },
+  { img: hero2Img, alt: "Pealy Eco Resort wooden sign" },
+  { img: hero3Img, alt: "Riverside deck and swing at Pealy Eco Resort" },
+  { img: hero4Img, alt: "Pealy Eco Resort cottage aerial view" },
+  { img: hero5Img, alt: "Aerial view of Pealy Eco Resort on the river" },
   { img: wildlifeImg, alt: "Royal Bengal tiger in the Sundarbans" },
-  { img: villageImg, alt: "Village life on the riverbanks" },
-  { img: tentImg, alt: "Riverside tent stay under the stars" },
 ];
 const CULTURE_VIDEO = [
   { src: "https://cdn.coverr.co/videos/coverr-bonfire-at-night-7686/1080p.mp4" },
@@ -76,10 +81,21 @@ function HomePage() {
 
 function Hero() {
   const [active, setActive] = useState(0);
+  const [tick, setTick] = useState(0);
+
   useEffect(() => {
     const id = setInterval(() => setActive((i) => (i + 1) % HERO_SLIDES.length), 5500);
     return () => clearInterval(id);
-  }, []);
+  }, [tick]);
+
+  function prev() {
+    setActive((i) => (i - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+    setTick((t) => t + 1);
+  }
+  function next() {
+    setActive((i) => (i + 1) % HERO_SLIDES.length);
+    setTick((t) => t + 1);
+  }
 
   return (
     <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
@@ -106,7 +122,7 @@ function Hero() {
       />
       <div className="absolute inset-0 gradient-overlay" />
 
-      <div className="container-x relative z-10 flex h-full flex-col justify-end pb-24 text-beige md:pb-32">
+      <div className="container-x relative z-10 flex h-full flex-col items-center justify-center text-beige text-center">
         <div className="reveal text-[11px] uppercase tracking-[0.4em] text-gold">
           Sundarbans · Bangladesh
         </div>
@@ -127,7 +143,7 @@ function Hero() {
         </div>
 
         {/* Floating booking widget */}
-        <div className="reveal reveal-delay-4 glass-dark mt-14 hidden items-end gap-3 rounded-2xl p-4 md:flex">
+        <div className="reveal reveal-delay-4 glass-dark mt-14 hidden items-end gap-3 rounded-2xl p-4 md:inline-flex">
           <Field label="Check in" value="Select date" />
           <Divider />
           <Field label="Check out" value="Select date" />
@@ -141,20 +157,24 @@ function Hero() {
         </div>
       </div>
 
-      {/* Thumbnail strip — visual cue + manual control */}
-      <div className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col gap-3 lg:flex">
-        {HERO_SLIDES.map((s, i) => (
-          <button
-            key={s.img}
-            type="button"
-            aria-label={`Show ${s.alt}`}
-            onClick={() => setActive(i)}
-            className={`group relative h-16 w-24 overflow-hidden rounded-md border transition-all ${i === active ? "border-gold scale-105" : "border-beige/30 opacity-60 hover:opacity-100"}`}
-          >
-            <img src={s.img} alt="" className="h-full w-full object-cover" loading="lazy" />
-          </button>
-        ))}
-      </div>
+
+      {/* Prev / Next arrows */}
+      <button
+        type="button"
+        aria-label="Previous slide"
+        onClick={prev}
+        className="absolute left-4 top-1/2 z-10 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-beige/30 bg-beige/10 text-beige backdrop-blur-sm transition-colors hover:bg-beige/25 md:left-8 md:h-13 md:w-13"
+      >
+        <ChevronLeft size={22} />
+      </button>
+      <button
+        type="button"
+        aria-label="Next slide"
+        onClick={next}
+        className="absolute right-4 top-1/2 z-10 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-beige/30 bg-beige/10 text-beige backdrop-blur-sm transition-colors hover:bg-beige/25 md:right-8 md:h-13 md:w-13"
+      >
+        <ChevronRight size={22} />
+      </button>
 
       {/* Slide progress dots (mobile) */}
       <div className="absolute inset-x-0 bottom-20 z-10 flex justify-center gap-2 lg:hidden">

@@ -5,7 +5,7 @@ import boatImg from "@/assets/boat-tour.jpg";
 import wildlifeImg from "@/assets/wildlife-tiger.jpg";
 import aerialImg from "@/assets/tour-aerial.jpg";
 import villageImg from "@/assets/village-life.jpg";
-import { Shield, Compass, Camera, Trees, ArrowRight, Clock, Users, Map, Check } from "lucide-react";
+import { Shield, Compass, Camera, Trees, ArrowRight, Clock, Users, Map as MapIcon, Check } from "lucide-react";
 
 export const Route = createFileRoute("/tour")({
   head: () => ({
@@ -124,7 +124,7 @@ function TourPage() {
                 <div className="mt-5 flex flex-wrap gap-5 text-xs text-foreground/75">
                   <span className="flex items-center gap-1.5"><Clock size={14} className="text-mangrove" /> {t.duration}</span>
                   <span className="flex items-center gap-1.5"><Users size={14} className="text-mangrove" /> {t.group}</span>
-                  <span className="flex items-center gap-1.5"><Map size={14} className="text-mangrove" /> Local guide</span>
+                  <span className="flex items-center gap-1.5"><MapIcon size={14} className="text-mangrove" /> Local guide</span>
                 </div>
                 <div className="mt-7 flex items-center justify-between border-t border-border pt-5">
                   <div className="font-display text-2xl text-gold">{t.price}<span className="text-xs text-muted-foreground"> / person</span></div>
