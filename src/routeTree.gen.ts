@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TourRouteImport } from './routes/tour'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RoomsRouteImport } from './routes/rooms'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PackagesRouteImport } from './routes/packages'
@@ -34,11 +33,6 @@ const TourRoute = TourRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RoomsRoute = RoomsRouteImport.update({
@@ -120,7 +114,6 @@ export interface FileRoutesByFullPath {
   '/packages': typeof PackagesRoute
   '/privacy': typeof PrivacyRoute
   '/rooms': typeof RoomsRouteWithChildren
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/tour': typeof TourRoute
   '/rooms/$slug': typeof RoomsSlugRoute
@@ -138,7 +131,6 @@ export interface FileRoutesByTo {
   '/packages': typeof PackagesRoute
   '/privacy': typeof PrivacyRoute
   '/rooms': typeof RoomsRouteWithChildren
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/tour': typeof TourRoute
   '/rooms/$slug': typeof RoomsSlugRoute
@@ -157,7 +149,6 @@ export interface FileRoutesById {
   '/packages': typeof PackagesRoute
   '/privacy': typeof PrivacyRoute
   '/rooms': typeof RoomsRouteWithChildren
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/tour': typeof TourRoute
   '/rooms/$slug': typeof RoomsSlugRoute
@@ -177,7 +168,6 @@ export interface FileRouteTypes {
     | '/packages'
     | '/privacy'
     | '/rooms'
-    | '/sitemap.xml'
     | '/terms'
     | '/tour'
     | '/rooms/$slug'
@@ -195,7 +185,6 @@ export interface FileRouteTypes {
     | '/packages'
     | '/privacy'
     | '/rooms'
-    | '/sitemap.xml'
     | '/terms'
     | '/tour'
     | '/rooms/$slug'
@@ -213,7 +202,6 @@ export interface FileRouteTypes {
     | '/packages'
     | '/privacy'
     | '/rooms'
-    | '/sitemap.xml'
     | '/terms'
     | '/tour'
     | '/rooms/$slug'
@@ -232,7 +220,6 @@ export interface RootRouteChildren {
   PackagesRoute: typeof PackagesRoute
   PrivacyRoute: typeof PrivacyRoute
   RoomsRoute: typeof RoomsRouteWithChildren
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   TourRoute: typeof TourRoute
 }
@@ -251,13 +238,6 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/rooms': {
@@ -377,7 +357,6 @@ const rootRouteChildren: RootRouteChildren = {
   PackagesRoute: PackagesRoute,
   PrivacyRoute: PrivacyRoute,
   RoomsRoute: RoomsRouteWithChildren,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   TourRoute: TourRoute,
 }
